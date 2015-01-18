@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -15,8 +17,10 @@ import javax.persistence.TemporalType;
 //@Entity (name="Userdetails")	//this is use for user define table
 @Table (name="USER_DETAILS")	//this is use for user define table
 public class UserDetails {
-//	@Id
+//	@Id		//this is use for define the primary key. 
 //	@Column (name="USER_ID")
+//	@Id @GeneratedValue(strategy=GenerationType.AUTO)		//this is use for define the primary key. it takes next number automatically.
+//	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)	//Maintain the sequence
 	private int userId;
 	
 //	@Column (name="USER_NAME")
@@ -31,7 +35,7 @@ public class UserDetails {
 	private String decription;
 	
 	@Id
-	@Column (name="USER_ID")
+	@Column (name="userId")
 	public int getUserId() {
 		return userId;
 	}
@@ -39,9 +43,9 @@ public class UserDetails {
 		this.userId = userId;
 	}
 	
-	@Column (name="USER_NAME")
+	@Column (name="user_name")
 	public String getUserName() {
-		return userName + " from getter";
+		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
