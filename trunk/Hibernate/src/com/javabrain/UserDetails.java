@@ -2,73 +2,68 @@ package com.javabrain;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-//@Entity (name="Userdetails")	//this is use for user define table
-@Table (name="USER_DETAILS")	//this is use for user define table
 public class UserDetails {
-//	@Id		//this is use for define the primary key. 
-//	@Column (name="USER_ID")
-//	@Id @GeneratedValue		//this is use for define the primary key. it takes next number automatically.
-//	@Id @GeneratedValue(strategy=GenerationType.AUTO)		//this is use for define the primary key. it takes next number automatically.
-//	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)	//Maintain the sequence
-	private int userId;
-	
-//	@Column (name="USER_NAME")
-//	@Basic (fetch) 	//
-//	@Transient		// this is used to skip the next column name
-	private String userName;
-	@Temporal (TemporalType.DATE) 	//this is used to save only current date not save the time
-//	@Temporal (TemporalType.TIME) 	//this is used to save only current date and time with mili seconds
-	private Date joinedDate;
-	@Embedded
-	private Address Address;
-	public void setAddress(Address address) {
-		Address = address;
-	}
-	@Lob	//use lorge value BLob is use for byte data type and CLob is use for Character data type
-	private String decription;
-	
 	@Id
-	@Column (name="userId")
+	@Column(name="USER_ID")
+	private int userId;
+	@Column(name="USER_NAME")
+	private String userName;
+	@Embedded
+	private Address currentAddress;
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride (name="street", column=@Column(name="HOME_STREET_NAME")),
+		@AttributeOverride (name="city", column=@Column(name="HOME_CITY_NAME")),
+		@AttributeOverride (name="state", column=@Column(name="HOME_STATE_NAME")),
+		@AttributeOverride (name="pincode", column=@Column(name="HOME_PIN_CODE"))
+	})
+	private Address permanentAddress;
+	@Column(name="DATE_OF_JOINING")
+	private Date joiningDate;
+	@Column(name="DESCRIPTION")
+	private String description;
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
-	@Column (name="user_name")
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Date getJoinedDate() {
-		return joinedDate;
+	public String getDescription() {
+		return description;
 	}
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public Address getAddress() {
-		return Address;
+	public Date getJoiningDate() {
+		return joiningDate;
 	}
-	public String getDecription() {
-		return decription;
+	public void setJoiningDate(Date joiningDate) {
+		this.joiningDate = joiningDate;
 	}
-	public void setDecription(String decription) {
-		this.decription = decription;
-	}	
-
+	public Address getCurrentAddress() {
+		return currentAddress;
+	}
+	public void setCurrentAddress(Address currentAddress) {
+		this.currentAddress = currentAddress;
+	}
+	public Address getPermanentAddress() {
+		return permanentAddress;
+	}
+	public void setPermanentAddress(Address permanentAddress) {
+		this.permanentAddress = permanentAddress;
+	}
 }
