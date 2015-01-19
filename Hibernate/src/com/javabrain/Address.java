@@ -4,10 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
-@Embeddable
 @Entity
+@Embeddable
 public class Address {
-	
 	@Column(name="STREET_NAME")
 	private String street;
 	@Column(name="CITY_NAME")
@@ -40,5 +39,5 @@ public class Address {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-
+	
 }
