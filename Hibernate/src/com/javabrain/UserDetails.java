@@ -4,9 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 public class UserDetails {
 //	@Id		//this is use for define the primary key. 
 //	@Column (name="USER_ID")
+//	@Id @GeneratedValue		//this is use for define the primary key. it takes next number automatically.
 //	@Id @GeneratedValue(strategy=GenerationType.AUTO)		//this is use for define the primary key. it takes next number automatically.
 //	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)	//Maintain the sequence
 	private int userId;
@@ -30,7 +31,11 @@ public class UserDetails {
 	@Temporal (TemporalType.DATE) 	//this is used to save only current date not save the time
 //	@Temporal (TemporalType.TIME) 	//this is used to save only current date and time with mili seconds
 	private Date joinedDate;
-	private String Address;
+	@Embedded
+	private Address Address;
+	public void setAddress(Address address) {
+		Address = address;
+	}
 	@Lob	//use lorge value BLob is use for byte data type and CLob is use for Character data type
 	private String decription;
 	
@@ -56,11 +61,8 @@ public class UserDetails {
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return Address;
-	}
-	public void setAddress(String address) {
-		Address = address;
 	}
 	public String getDecription() {
 		return decription;

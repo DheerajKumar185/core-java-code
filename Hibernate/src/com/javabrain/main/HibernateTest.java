@@ -6,15 +6,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.javabrain.Address;
 import com.javabrain.UserDetails;
 
 public class HibernateTest {
 
 	public static void main(String[] args) {
 		UserDetails user = new UserDetails();
-		user.setUserId(14);
-		user.setUserName("Deepak Kumar");
-		user.setAddress("TSB - 112, Bina Project, Sonbhadra, U.P. 231220");
+		user.setUserId(1);
+		user.setUserName("Dheeraj Kumar");
+		Address addr = new Address();
+		addr.setStreet("TSB - 112, Bina Project");
+		addr.setCity("Sonbhadra");
+		addr.setState("Uttar Predesh");
+		addr.setPincode("231220");
+		user.setAddress(addr);
+//		user.setAddress("TSB - 112, Bina Project, Sonbhadra, U.P. 231220");
 		user.setJoinedDate(new Date());	//this is save the Current date and time
 		user.setDecription("He is doing B.Tech from United College, Allahabad");
 		
@@ -29,8 +36,8 @@ public class HibernateTest {
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		user = (UserDetails)session.get(UserDetails.class, 13);
-		System.out.println("User_Id : " + user.getUserId() + "\n" + "User_Name : " + user.getUserName() + "\n" + "Address : " + user.getAddress() + "\n" + "Date of joining : " + user.getJoinedDate() + "\n" + "Description : " + user.getDecription() + "\n");
+		user = (UserDetails)session.get(UserDetails.class, 1);
+		System.out.println("User_Id : " + user.getUserId() + "\n" + "User_Name : " + user.getUserName() + "\n" + "Street : " + user.getAddress().getStreet() + "\n" + "City : " + user.getAddress().getCity() + "\n" + "State : " + user.getAddress().getState() + "\n" + "Pincode : " + user.getAddress().getPincode() + "\n" + "Date of joining : " + user.getJoinedDate() + "\n" + "Description : " + user.getDecription() + "\n");
 
 	}
 
