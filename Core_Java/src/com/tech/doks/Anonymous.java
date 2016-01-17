@@ -1,7 +1,7 @@
 package com.tech.doks;
 
 public class Anonymous {
-	/*Anonymous simply means nameless.
+	/*Anonymous : simply means nameless.
 	 * An object that have no reference is known as anonymous object.
 	 * if you have to use an object only once, anonymous object is a good approach.*/
 	
