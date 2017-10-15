@@ -9,7 +9,7 @@ public class SendEmail {
 	public static void main(String[] args) {
 
 		final String username = "dheerajkumar147";
-		final String password = "ptdj@112";
+		final String password = "";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
